@@ -1,14 +1,10 @@
 import java.util.*;
 public class CharacterCustomization
 {
-    public CharacterCustomization()
-    {
-    }
     public static void Customization()
     {
         Scanner keyboard = new Scanner(System.in);
         int skillPoints = 100;
-        String[] skillAssign = new String[100];
         int newMaxHealth = 0;
         int newMaxMagic = 0;
         int newMaxStamina = 0;
@@ -21,7 +17,9 @@ public class CharacterCustomization
         System.out.println("Type \"done\" to finish");
         for (int i=0; isDone == false; i++)
         {
-            skillAssign[i] = keyboard.nextLine();
+            //System.out.println(skillAssign);
+            //System.out.println(i);
+            String skillAssign = keyboard.nextLine();
             
             if (skillPoints == 0)
             {
@@ -31,22 +29,29 @@ public class CharacterCustomization
                 System.out.println("Skill points left: " + skillPoints);
                 System.out.println("Type \"done\"to finish");
             }
-            if ((!(skillAssign[i].equalsIgnoreCase("stats"))) && (!(skillAssign[i].equalsIgnoreCase("done"))))
+            if ((!(skillAssign.equalsIgnoreCase("stats"))) && (!(skillAssign.equalsIgnoreCase("done"))))
             {
-                assignmentValue = keyboard.nextInt();
-                if (((skillAssign[i].equalsIgnoreCase("health"))) && (skillPoints - assignmentValue >=0))
+                try 
+                {
+                    assignmentValue = Integer.parseInt(keyboard.nextLine());
+                }
+                catch (NumberFormatException exc)
+                {
+                    throw new InputMismatchException(exc.getMessage());
+                }
+                if (((skillAssign.equalsIgnoreCase("health"))) && (skillPoints - assignmentValue >=0))
                 {
                     System.out.println("Added " + assignmentValue + " points to Health!");
                     skillPoints = (skillPoints - assignmentValue);
                     newMaxHealth = (assignmentValue + newMaxHealth);
                 }
-                else if ((skillAssign[i].equalsIgnoreCase("magic")) && (skillPoints - assignmentValue >=0))
+                else if ((skillAssign.equalsIgnoreCase("magic")) && (skillPoints - assignmentValue >=0))
                 {
                     System.out.println("Added " + assignmentValue + " points to Magic!");
                     skillPoints = (skillPoints - assignmentValue);
                     newMaxMagic = (assignmentValue + newMaxMagic);
                 }
-                else if ((skillAssign[i].equalsIgnoreCase("stamina")) && (skillPoints - assignmentValue >=0))
+                else if ((skillAssign.equalsIgnoreCase("stamina")) && (skillPoints - assignmentValue >=0))
                 {
                     System.out.println("Added " + assignmentValue + " points to Stamina!");
                     skillPoints = (skillPoints - assignmentValue);
@@ -55,19 +60,19 @@ public class CharacterCustomization
                 else
                 {
                     System.out.println("Sorry, I could not read that!");
-                    System.out.println(skillAssign[i].equals("stats"));
+                    System.out.println(skillAssign.equals("stats"));
                     System.out.println(skillPoints - assignmentValue >=0);
                     continue;
                 }
             }
-            else if (skillAssign[i].equals("stats"))
+            else if (skillAssign.equals("stats"))
             {
                 System.out.println("Max Health: " + newMaxHealth);
                 System.out.println("Max Magic: " + newMaxMagic);
                 System.out.println("Max Stamina: " + newMaxStamina);
                 System.out.println("Skill points left: " + skillPoints);
             }
-            else if (skillAssign[i].equalsIgnoreCase("done")) 
+            else if (skillAssign.equalsIgnoreCase("done")) 
             {
                 isDone = true;
             }
@@ -81,8 +86,8 @@ public class CharacterCustomization
         System.out.println("Max Magic: " + newMaxMagic);
         System.out.println("Max Stamina: " + newMaxStamina);
         System.out.println("Skill points left: " + skillPoints);
-        //skillAssign = keyboard.nextLine();
-        if (((keyboard.nextLine()).equalsIgnoreCase("y")) || ((keyboard.nextLine()).equalsIgnoreCase("yes")))
+        String answer = keyboard.nextLine();
+        if ((answer.equalsIgnoreCase("y")) || (answer.equalsIgnoreCase("yes")))
         {
             Player player = new Player(newMaxHealth, newMaxMagic, newMaxStamina);
         }
