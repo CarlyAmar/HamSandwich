@@ -1,6 +1,6 @@
 public class Player
 {
-    private String name = "";
+    private String name;
     
     private int maxHealth;
     private int maxMagic;
@@ -13,6 +13,8 @@ public class Player
     private int archery;
     private int melee;
     private int sneak;
+    
+    private int defense;
 
     public Player(int newMaxHealth, int newMaxMagic, int newMaxStamina)
     {
@@ -23,7 +25,7 @@ public class Player
                             //getters
     public int getCurrentHealth()
     {
-        return this.currentHealth;
+        return this.currentHealth; //problem with this
     }
     public int getMaxHealth()
     {
@@ -99,5 +101,33 @@ public class Player
     public void setMaxSneak(int newMaxSneak)
     {
         this.sneak = newMaxSneak;
+    }
+    public boolean comeAtMeBro (Mob other)//Make sure to correct this when we implement Mobs
+    {
+        //boolean isFighting = true;
+        while (true)
+        {
+            if (currentHealth <= 0)
+            {
+                System.out.println("You have died\nRestart? [y]/[n]");
+                return false;
+            }
+            else if (other.getCurrentHealth() <= 0)
+                return true;
+            else 
+            {
+                other.setCurrentHealth(attack(other));
+                defend(other);
+            }
+        }
+    }
+    private int attack(Mob other)
+    {
+        return (/* Formula for Combat here*/ 1 /*this is just going to be default*/);
+                                                /*until we make a combat equation*/
+    }
+    private void defend(Mob other)
+    {
+        this.currentHealth = other.attack() - (this.defense /*Enter a defense formula here*/);
     }
 }
