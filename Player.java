@@ -1,6 +1,9 @@
-public class Player
+package org.hamsandwich;
+
+public class Player 
 {
-    private String name;
+	private String name;
+    private int level;
     
     private int maxHealth;
     private int maxMagic;
@@ -15,6 +18,11 @@ public class Player
     private int sneak;
     
     private int defense;
+    
+    public int getLevel()
+    {
+        return this.level;
+    }
 
     public Player(int newMaxHealth, int newMaxMagic, int newMaxStamina)
     {
@@ -102,9 +110,9 @@ public class Player
     {
         this.sneak = newMaxSneak;
     }
+    /*
     public boolean comeAtMeBro (Mob other)//Make sure to correct this when we implement Mobs
     {
-        //boolean isFighting = true;
         while (true)
         {
             if (currentHealth <= 0)
@@ -123,11 +131,22 @@ public class Player
     }
     private int attack(Mob other)
     {
-        return (/* Formula for Combat here*/ 1 /*this is just going to be default*/);
-                                                /*until we make a combat equation*/
+        if (((this.melee*currentStamina) * (Math.random() * 100)) - (other.defense()) > 0)
+        {
+            return (((this.melee*currentStamina) * (Math.random() * 100)) - (other.defense()));
+        }
+        else 
+            return 0;
     }
     private void defend(Mob other)
     {
-        this.currentHealth = other.attack() - (this.defense /*Enter a defense formula here*/);
+        if ((other.attack()) - (this.melee * Math.random() * 100) > 0)
+        {
+            this.currentHealth = other.attack() - (this.defense );//Enter a defense formula here
+        }
+        else
+            System.out.println("You block his attack");
     }
+    */
+
 }

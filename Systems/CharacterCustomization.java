@@ -1,5 +1,10 @@
+package org.hamsandwich.Systems;
 import java.util.*;
-public class CharacterCustomization
+import org.hamsandwich.*;
+//import org.hamsandwich.Graphics.*;
+//import org.hamsandwich.Mobs.*;
+//import org.hamsandwich.Systems.*;
+public class CharacterCustomization 
 {
     public static void Customization()
     {

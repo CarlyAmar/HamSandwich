@@ -1,6 +1,10 @@
+package org.hamsandwich;
 import java.util.*;
-public class newGame
-{ 
+
+import org.hamsandwich.Graphics.*;
+import org.hamsandwich.Systems.*;
+public class newGame 
+{
 	public static void main (String[]args)
 	{
         CharacterCustomization characterCustomization = new CharacterCustomization();
@@ -30,8 +34,5 @@ public class newGame
         Player player = (Player)xstream.fromXML(xml);
 	}
 	*/
+
 }
-/*
-xstream.alias("person", Person.class);
-xstream.alias("phonenumber", PhoneNumber.class);
-*/

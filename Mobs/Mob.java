@@ -1,6 +1,8 @@
-public class Mob
+package org.hamsandwich.Mobs;
+
+public class Mob 
 {
-    private int maxHealth;
+	private int maxHealth;
     private int maxMagic;
     private int maxStamina;
     
@@ -33,14 +35,8 @@ public class Mob
     {
         currentHealth = h;
     }
-     
-     
-     
-     
-     
     public int attack ()
     {
-        return 1; //fix this later
+        return 1; 
     }
-     
 }
