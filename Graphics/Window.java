@@ -10,10 +10,15 @@ import org.lwjgl.opengl.DisplayMode;
 
 public class Window 
 {
-	public final int width = 800;
-	public final int height = 600;
+	public int width = 800;
+	public int height = 600;
 	//create display
-	public void window()
+	public Window(int tempWidth, int tempHeight)
+	{
+		this.height = tempWidth;
+		this.width = tempHeight;	
+	}
+	public void display()
 	{
 		try
 		{
@@ -30,5 +35,6 @@ public class Window
 		{
 			Display.update();
 		}
+		Display.destroy();
 	}
 }

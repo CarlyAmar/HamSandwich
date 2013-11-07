@@ -1,12 +1,13 @@
 package org.hamsandwich;
 import java.util.*;
-
 import org.hamsandwich.Graphics.*;
 import org.hamsandwich.Systems.*;
 public class newGame 
 {
 	public static void main (String[]args)
 	{
+		Window game = new Window(500, 600);
+		game.display();
         CharacterCustomization characterCustomization = new CharacterCustomization();
         characterCustomization.Customization();
         System.out.println("Character Created!");
