@@ -1,0 +1,6 @@
+attack = (strength*type) * (math.rand() * fatigue);
+def = equip.stats(defense) * strength
+if (attack - defense <= 0)
+    return 0;
+else 
+    return (attack-defense);

@@ -1,0 +1,3 @@
+#! /bin/bash
+java -cp .:lib/* -Djava.library.path=native/linux newGame
+#newGame is the file that should be run
