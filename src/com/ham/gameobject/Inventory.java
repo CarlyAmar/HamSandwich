@@ -46,9 +46,7 @@ public class Inventory
 		{
 			if (items[i] == item)
 			{
-				items[i]=null;
-				if(i < firstFree)
-					firstFree = i;
+				remove(i);
 				return;
 			}
 		}

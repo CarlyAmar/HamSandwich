@@ -8,7 +8,7 @@ public class Stats
 	private int health;
 	private int level;
 	private boolean levelable;
-	public static final double LEVEL_CONST = Math.pow(3,(3.0/2.0));
+	public static final double LEVEL_CONST = Math.pow(3.0,(3.0/2.0));
 	
 	public Stats(float xp, boolean levelable)
 	{
@@ -32,13 +32,6 @@ public class Stats
 		xp += amt;
 	}
 
-	/*
-	@Override
-	public void update()
-	{
-		//System.out.println("Stats: SPEED: " + getSpeed() + " LEVEl: " + getLevel() + " MAXHP: " + getMaxHealth() + " HP: " + getCurrentHealth() + " STR: " + getStrength() + " MAGIC " + getMagic());
-	}
-	*/
 	public void addItem(Item item)
 	{
 		System.out.println("You just picked up an item!");
@@ -50,13 +43,13 @@ public class Stats
 			return level;
 		
 		
-		double x = xp;
+		double x = xp + 105.0;
 		
-		double a = Math.sqrt(243 * (x * x) + 4050 * x + 17500);
-		double c = ((3*x+25)/25);
+		double a = Math.sqrt(243.0 * (x * x) + 4050.0 * x + 17500.0);
+		double c = ((3.0*x+25.0)/25.0);
 		double d = Math.cbrt(a/LEVEL_CONST + c);
 		
-		return (int)(d - 1.0/d * 3)-1;
+		return (int)(d - 1.0/d * 3.)-1;
 	}
 	
 	

@@ -3,8 +3,9 @@ package com.ham.gameobject;
 import java.util.ArrayList;
 
 import com.ham.engine.GameObject;
-import com.ham.engine.Main;
+import com.ham.engine.Sprite;
 import com.ham.game.Delay;
+import com.ham.game.Game;
 import com.ham.game.Time;
 import com.ham.game.Util;
 
@@ -23,7 +24,7 @@ public class Enemy extends StatObject
 		target = null;
 		attackRange = 48;
 		attackDelay = new Delay(500);
-		attackDelay.start();
+		attackDelay.restart();
 		attackDamage = 1;
 		sightRange = 128;
 	}
@@ -36,7 +37,7 @@ public class Enemy extends StatObject
 		{	
 			if(Util.lineOfSight(this, target) && (Util.dist(x, y, getTarget().getX(), getTarget().getY()) <= attackRange))
 			{
-				if(attackDelay.over())
+				if(attackDelay.isOver())
 					Attack();
 			}
 			else
@@ -48,7 +49,7 @@ public class Enemy extends StatObject
 	protected void Attack()
 	{
 		getTarget().damage(getAttackDamage());
-		restartAttackDelay();
+		attackDelay.restart();
 	}
 	protected void Chase()
 	{
@@ -72,7 +73,7 @@ public class Enemy extends StatObject
 	}
 	protected void Look()
 	{
-		ArrayList<GameObject> objects = Main.sphereCollide(x, y, sightRange);
+		ArrayList<GameObject> objects = Game.sphereCollide(x, y, sightRange);
 			
 		for (GameObject go : objects)
 		{
@@ -105,11 +106,7 @@ public class Enemy extends StatObject
 	public void setAttackDelay(int time)
 	{
 		attackDelay = new Delay(time);
-		attackDelay.end();
-	}
-	public void restartAttackDelay()
-	{
-		attackDelay.start();
+		attackDelay.terminate();
 	}
 	public void setAttackDamage(int amt)
 	{
@@ -122,5 +119,13 @@ public class Enemy extends StatObject
 	public void setSightRange(float dist)
 	{
 		sightRange = dist;
+	}
+	@Override
+	protected void init(float x, float y,float r,float g,float b, float sx, float sy,int type)
+	{
+		this.x=x;
+		this.y=y;
+		this.type= ENEMY_ID;
+		this.spr = new Sprite(r,g,b,sx,sy);
 	}
 }

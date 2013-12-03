@@ -1,6 +1,6 @@
 package com.ham.engine;
 
-import java.util.ArrayList;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,7 +15,6 @@ import com.ham.game.Time;
 import static org.lwjgl.opengl.GL11.*;
 public class Main 
 {
-	private static Game game;
 	
 	public static void main(String[] args) 
 	{
@@ -25,13 +24,9 @@ public class Main
 		gameLoop();
 		cleanup();
 	}
-	public static ArrayList<GameObject> sphereCollide(float x, float y, float radius)
-	{
-		return game.sphereCollide(x,y,radius);
-	}
 	private static void initGame()
 	{
-		game = new Game();
+		Game.game = new Game();
 	}
 	private static void gameLoop()
 	{
@@ -48,18 +43,18 @@ public class Main
 	
 	private static void getInput()
 	{
-		game.getInput();
+		Game.game.getInput();
 	}
 	private static void update()
 	{
-		game.update();
+		Game.game.update();
 	}
 	private static void render()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glLoadIdentity();
 		
-		game.render();
+		Game.game.render();
 		
 		Display.update();
 		Display.sync(60);
