@@ -26,6 +26,7 @@ public class Player extends StatObject
 	private int attackRange;
 	private int facingDirection;
 	private int attackDamage;
+	private boolean isAlive;
 	
 	public static final double LEVEL_CONST = Math.pow(3,(3.0/2.0));
 	
@@ -41,28 +42,32 @@ public class Player extends StatObject
 		attackDelay.terminate();
 		facingDirection = 0;
 		attackDamage = 1;
+		isAlive = true;
 	}
 	public void getInput()
 	{
-		if(Keyboard.isKeyDown(Keyboard.KEY_W))
+		//while (isAlive)
 		{
-			move(0,1);
-		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_S))
-		{
-			move(0,-1);
-		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_A))
-		{
-			move(-1,0);
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_D))
-		{
-			move(1,0);
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE) && attackDelay.isOver())
-		{
-			attack();
+			if(Keyboard.isKeyDown(Keyboard.KEY_W))
+			{
+				move(0,1);
+			}
+			if(Keyboard.isKeyDown(Keyboard.KEY_S))
+			{
+				move(0,-1);
+			}
+			if(Keyboard.isKeyDown(Keyboard.KEY_A))
+			{
+				move(-1,0);
+			}
+			if (Keyboard.isKeyDown(Keyboard.KEY_D))
+			{
+				move(1,0);
+			}
+			if (Keyboard.isKeyDown(Keyboard.KEY_SPACE) && attackDelay.isOver())
+			{
+				attack();
+			}
 		}
 	}
 	public void attack()
@@ -125,6 +130,10 @@ public class Player extends StatObject
 	@Override
 	public void update()
 	{
+		if(stats.getCurrentHealth() <= 0)
+		{
+			//isAlive = false;
+		}
 		ArrayList<GameObject> objects = Game.rectangleCollide(x, y, x+ SIZE, y+ SIZE);
 		for (GameObject go : objects)
 			if(go.getType() == GameObject.ITEM_ID)
